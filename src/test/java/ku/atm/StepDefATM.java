@@ -1,3 +1,5 @@
+// Weerawong Vonggatunyu 6410406860
+
 package ku.atm;
 
 import io.cucumber.java.Before;
@@ -54,6 +56,7 @@ public class StepDefATM {
         assertThrows(NotEnoughBalanceException.class,
                 () -> atm.withdraw(amount));
     }
+
     @Then("my account balance is {float}")
     public void my_account_balance_is(double balance) {
         assertEquals(balance, atm.getBalance());
@@ -67,7 +70,12 @@ public class StepDefATM {
     @Then("customer id {int} account balance is {float}")
     public void customer_id_account_balance_is(int id, double balance) {
         assertEquals(balance,
-                     bank.getCustomer(id).getAccount().getBalance());
+                bank.getCustomer(id).getAccount().getBalance());
+    }
+
+    @When("I deposit {float} to ATM")
+    public void i_deposit_to_atm(double amount) {
+        atm.deposit(amount);
     }
 
 }
